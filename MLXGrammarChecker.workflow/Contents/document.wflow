@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-          <string>export PYTHONPATH="/path/to/your/autogram/.venv/lib/python3.11/site-packages"
+					<string>export PYTHONPATH="/path/to/your/autogram/.venv/lib/python3.11/site-packages"
 /path/to/your/python /path/to/your/scripts/app-mlx-lm.py "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
