@@ -59,37 +59,15 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>MODEL = "mlx-community/Mistral-7B-Instruct-v0.2-4bit-mlx"
-
-try:
-    from mlx_lm import load, generate
-except ImportError:
-    import subprocess
-    subprocess.check_call(["python3", "-m", "pip", "install", "mlx-lm"])
-    from mlx_lm import load, generate
-import sys
-
-input_string = sys.argv[1]
-try:
-    model, tokenizer = load(MODEL)
-    prompt = f"""&lt;s&gt;&lt;&lt;SYS&gt;&gt;You are a professional expert, renowned as an exceptionally skilled and efficient English copywriter, a meticulous text editor,
-    and an esteemed New York Times editor. Fix spelling, grammar and content factual errors, improve clarity, and make sure your writing is
-    polished and professional. Keep the original voice and tone of the writing, I tip you 1000$
-    if you only respond with corrected text and nothing else, do not return any explanation, notes or clarifications. Examples:
-    Whot is you name?\nWhat is your name?\n
-    How old is you?\nHow old are you?\n
-    Wha tme is it?\nWhat time is it?\n&lt;&lt;/SYS&gt;&gt;\n\n[INST] {input_string} [/INST]"""
-    response = generate(model, tokenizer, prompt=prompt)
-    print(f"{response.strip()}")
-except Exception as e:
-    print("error", e)
-</string>
+          <string>export GENAI_API_KEY="YOUR_API_KEY"
+export PYTHONPATH="/Users/your-username/Documents/autogram/.venv/lib/python3.11/site-packages"
+/Users/your-username/Documents/autogram/.venv/bin/python /Users/your-username/Documents/autogram/scripts/app-gemini-ollama.py "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
 					<integer>1</integer>
 					<key>shell</key>
-					<string>/usr/local/bin/python3</string>
+					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
 				</dict>
@@ -108,7 +86,7 @@ except Exception as e:
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>EFEB8A27-A9C0-4146-8FC0-D20E8A93D8C3</string>
+				<string>80E43814-C21B-44BB-800A-5A67DFC805DB</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -118,11 +96,9 @@ except Exception as e:
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>E9913E07-237D-40FD-9C84-C5971BD0C453</string>
-				<key>ShowWhenRun</key>
-				<false/>
+				<string>6E0B306C-B1E4-47C8-B672-FA4C39C22478</string>
 				<key>UUID</key>
-				<string>6F1D1364-8784-491C-B50D-93B452F5C0F1</string>
+				<string>B1ABB34F-7629-42AF-86D5-DD0403D69ADD</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -198,7 +174,7 @@ except Exception as e:
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>673.000000:599.000000</string>
+				<string>309.000000:305.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>

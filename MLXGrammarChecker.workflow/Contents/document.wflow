@@ -59,29 +59,14 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>MODEL = "mistral-grammar-checker:latest"
-
-try:
-    import ollama
-except ImportError:
-    import subprocess
-    subprocess.check_call(["python3", "-m", "pip", "install", "ollama"])
-    import ollama
-import sys
-
-input_string = sys.argv[1]
-try:
-    response = ollama.generate(model= MODEL, prompt=input_string)
-    response = response['response']
-    print(f"{response.strip()}")
-except Exception as e:
-    print("error", e)</string>
+					<string>export PYTHONPATH="/Users/your-username/Documents/autogram/.venv/lib/python3.11/site-packages"
+/Users/your-username/Documents/autogram/.venv/bin/python /Users/your-username/Documents/autogram/scripts/app-mlx-lm.py "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
 					<integer>1</integer>
 					<key>shell</key>
-					<string>/usr/local/bin/python3</string>
+					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
 				</dict>
@@ -100,7 +85,7 @@ except Exception as e:
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>EFEB8A27-A9C0-4146-8FC0-D20E8A93D8C3</string>
+				<string>7F352EF2-1928-4F00-A7BA-1B6E4672E569</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -110,11 +95,9 @@ except Exception as e:
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>E9913E07-237D-40FD-9C84-C5971BD0C453</string>
-				<key>ShowWhenRun</key>
-				<false/>
+				<string>47985CA7-8F94-40FF-BCB3-BA086CB8985D</string>
 				<key>UUID</key>
-				<string>6F1D1364-8784-491C-B50D-93B452F5C0F1</string>
+				<string>1D00D447-9D13-4599-ACC4-59B625DA5DFC</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -190,7 +173,7 @@ except Exception as e:
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>673.000000:500.000000</string>
+				<string>309.000000:305.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -221,9 +204,9 @@ except Exception as e:
 		<key>serviceProcessesInput</key>
 		<false/>
 		<key>systemImageName</key>
-		<string>NSTouchBarCompose</string>
+		<string>NSActionTemplate</string>
 		<key>useAutomaticInputType</key>
-		<false/>
+		<true/>
 		<key>workflowTypeIdentifier</key>
 		<string>com.apple.Automator.servicesMenu</string>
 	</dict>
