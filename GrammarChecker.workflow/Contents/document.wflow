@@ -60,8 +60,8 @@
 				<dict>
 					<key>COMMAND_STRING</key>
           <string>export GENAI_API_KEY="YOUR_API_KEY"
-export PYTHONPATH="/Users/your-username/Documents/autogram/.venv/lib/python3.11/site-packages"
-/Users/your-username/Documents/autogram/.venv/bin/python /Users/your-username/Documents/autogram/scripts/app-gemini-ollama.py "$@"</string>
+export PYTHONPATH="/path/to/your/autogram/.venv/lib/python3.11/site-packages"
+/path/to/your/python /path/to/your/scripts/app-gemini-ollama.py "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
