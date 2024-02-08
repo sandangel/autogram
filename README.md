@@ -17,7 +17,34 @@ Example rephrased text from the above message:
 ## Setup
 
 - Install [ollama](https://ollama.ai/)
-- Install [pdm](https://pdm-project.org/latest/#installation). If you are using nix, just need to run `nix develop --impure .`, or `direnv allow` if you're using direnv + nix
+- Install [pdm](https://pdm-project.org/latest/#installation). If you are using nix, just need to run `nix develop --impure .`
+    - If you are using direnv + nix, Please add the layout_pdm below to your direnv config
+
+```sh
+        layout_pdm() {
+            if has pdm; then
+                # create venv if it doesn't exist
+                if [[ ! -d .venv ]]; then
+                    pdm venv create
+                fi
+
+                if [[ ! -f pyproject.toml ]]; then
+                    echo 'No pyproject.toml found. Use `pdm init` to create one first.'
+                    pdm init
+                fi
+
+                if [[ "$VIRTUAL_ENV" == "" ]]; then
+                    pdm use -q --venv in-project
+                    eval $(pdm venv activate in-project)
+
+                    export VIRTUAL_ENV=$(pwd)/.venv
+                    export PYTHONPATH=$VIRTUAL_ENV/lib/$(command ls $VIRTUAL_ENV/lib | head -1)/site-packages:$PYTHONPATH
+                    PATH_add "$VIRTUAL_ENV/bin"
+                fi
+            fi
+        }
+```
+
 - Install dependencies
 
 ```python
