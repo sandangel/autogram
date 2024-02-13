@@ -25,7 +25,7 @@ An example of refined text from the above message:
 ## Setup
 
 - Install [ollama](https://ollama.ai/)
-- Install [pdm](https://pdm-project.org/latest/#installation). If you are using nix, check [Nix users](## Nix users)
+- Install [pdm](https://pdm-project.org/latest/#installation). If you are using nix, check [Nix users](#nix-users)
 - Clone the repo and install dependencies
 
 ```sh
