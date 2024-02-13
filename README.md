@@ -89,6 +89,7 @@ The MLXGrammarChecker workflow is based on the Qwen/Qwen1.5-14B-Chat model.
 
 - Implement a popup dialog to allow the user to select either the Ollama or Gemini generated text, instead of inserting both options into the document.
 - Making MLX workflow faster for daily use.
+- Auto improve the prompt with [Prompt self-evolution](https://arxiv.org/pdf/2309.16797.pdf)
 - Easier to install by auto detecting `site-packages` in pdm.
 
 ## Nix users
