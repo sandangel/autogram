@@ -36,13 +36,21 @@ system_message = get_system_prompt(input_string)
 
 
 async def run_ollama() -> str:
-    response = ollama.generate(model=MODEL, prompt=system_message, keep_alive="1h")
-    return response["response"].strip()
+    try:
+        response = ollama.generate(model=MODEL, prompt=system_message, keep_alive="1h")
+        return response["response"].strip()
+    except Exception as e:
+        print(e)
+        return ""
 
 
 async def run_gemini() -> str:
-    response = model.generate_content(system_message)
-    return response.text.strip()
+    try:
+        response = model.generate_content(system_message)
+        return response.text.strip()
+    except Exception as e:
+        print(e)
+        return ""
 
 
 async def main():
