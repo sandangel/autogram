@@ -1,5 +1,5 @@
-# Autogram
-<img src="assets/autogram.jpg" style="max-width: 400px;" />
+# ShortcutX
+<img src="assets/shortcutx.jpg" style="max-width: 400px;" />
 
 Correct spelling and grammar by highlighting text and using a keyboard shortcut.
 
@@ -91,6 +91,7 @@ The MLXGrammarChecker workflow is based on the Qwen/Qwen1.5-14B-Chat model.
 - Making MLX workflow faster for daily use.
 - Auto improve the prompt with [Prompt self-evolution](https://arxiv.org/pdf/2309.16797.pdf)
 - Easier to install by auto detecting `site-packages` in pdm.
+- Save generated and audited answer from user for finetuning.
 
 ## Nix users
 
