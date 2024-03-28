@@ -63,7 +63,7 @@ dspy-ai==2.4.0
     # via shortcutx
 executing==2.0.1
     # via stack-data
-filelock==3.13.1
+filelock==3.13.3
     # via huggingface-hub
     # via transformers
 frozenlist==1.4.1
@@ -100,12 +100,12 @@ h11==0.14.0
     # via uvicorn
 hdbscan==0.8.33
     # via arize-phoenix
-httpcore==1.0.4
+httpcore==1.0.5
     # via httpx
-httpx==0.25.2
+httpx==0.27.0
     # via ollama
     # via openai
-huggingface-hub==0.21.4
+huggingface-hub==0.22.1
     # via datasets
     # via tokenizers
     # via transformers
@@ -140,7 +140,7 @@ matplotlib-inline==0.1.6
     # via ipython
 mlx==0.8.1
     # via mlx-lm
-mlx-lm==0.4.0
+mlx-lm==0.5.0
     # via shortcutx
 multidict==6.0.5
     # via aiohttp
@@ -157,14 +157,15 @@ numpy==1.26.4
     # via mlx-lm
     # via numba
     # via optuna
+    # via pandas
     # via pyarrow
     # via scikit-learn
     # via scipy
     # via transformers
     # via umap-learn
-ollama==0.1.7
+ollama==0.1.8
     # via shortcutx
-openai==1.14.2
+openai==1.14.3
     # via dspy-ai
 openinference-instrumentation-dspy==0.1.6
     # via shortcutx
@@ -262,10 +263,10 @@ pyarrow==15.0.2
     # via datasets
 pyarrow-hotfix==0.6
     # via datasets
-pyasn1==0.5.1
+pyasn1==0.6.0
     # via pyasn1-modules
     # via rsa
-pyasn1-modules==0.3.0
+pyasn1-modules==0.4.0
     # via google-auth
 pydantic==2.5.0
     # via dspy-ai
