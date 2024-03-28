@@ -1,30 +1,80 @@
 [project]
-name = "autogram"
+name = "shortcutx"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "Add your description here"
 authors = [
-    {name = "San Nguyen", email = "vinhsannguyen91@gmail.com"},
+    { name = "San Nguyen", email = "vinhsannguyen91@gmail.com" }
 ]
 dependencies = [
-    "mlx>=0.1.0",
-    "numpy>=1.26.3",
-    "huggingface-hub>=0.20.3",
+    "dspy-ai>=2.3.4",
+    "google-generativeai>=0.3.2",
+    "mlx-lm>=0.0.13",
     "ollama>=0.1.6",
     "pyperclip>=1.8.2",
-    "google-generativeai>=0.3.2",
-    "transformers>=4.37.2",
-    "mlx-lm>=0.0.7",
-    "jinja2>=3.1.3",
-    "sentencepiece>=0.1.99",
+    "sentencepiece>=0.2.0",
+    "transformers>=4.38.1",
+    "arize-phoenix>=3.4.1",
+    "openinference-instrumentation-dspy>=0.1.2",
+    "opentelemetry-exporter-otlp>=1.23.0",
+    "regex~=2023.10.3",
+    "datasets~=2.14.6, <3.0.0",
+    "polars>=0.20.15",
+    "ipython>=8.22.2",
+    "cloudpickle>=3.0.0",
 ]
-requires-python = "==3.11.*"
 readme = "README.md"
-license = {text = "MIT"}
+requires-python = ">= 3.11"
 
+[project.scripts]
+shortcutx = "shortcutx.main:cli"
+generate = "shortcutx.generator:generate"
+generate-test = "shortcutx.generator:generate_test"
+compile = "shortcutx.compiler:compile"
+evaluate = "shortcutx.evaluator:evaluate"
 
-[project.optional-dependencies]
-dev = [
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
     "mypy>=1.8.0",
+    "ruff>=0.3.2",
 ]
-[tool.pdm]
-distribution = false
+
+[tool.rye.scripts]
+phoenix-ui = "python -m phoenix.server.main --host 0.0.0.0 --port 6006 serve"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "src/shortcutx",
+]
+
+[tool.hatch.build.targets.app]
+scripts = ["shortcutx"]
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+  "I", # isort
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    # at least this three should be fine in tests:
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

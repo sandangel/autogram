@@ -1,21 +1,21 @@
 import argparse
-import models
 import time
-from typing import Optional
+
+import models
 
 from scripts.prompts import get_system_prompt
 
 try:
-    import pyperclip
     import mlx.core as mx
+    import pyperclip
 except ImportError:
-    import site
     import os
+    import site
 
     # Automator environment does not have site-packages installed by pdm. We need to add it manually.
     site.addsitedir(os.getenv("PYTHONPATH") or "")
-    import pyperclip
     import mlx.core as mx
+    import pyperclip
 
 
 def generate(
@@ -24,14 +24,14 @@ def generate(
     prompt: str,
     max_tokens: int,
     temp: float,
-) -> Optional[str]:
-    prompt = tokenizer.encode(prompt)
+) -> str | None:
+    encoded_prompt = tokenizer.encode(prompt)
 
     tic = time.time()
     tokens = []
     for token, n in zip(
-        models.generate(prompt, model, temp),
-        range(max_tokens),
+        models.generate(encoded_prompt, model, temp),
+        range(max_tokens), strict=False,
     ):
         if token == tokenizer.eos_token_id:
             break
@@ -48,7 +48,7 @@ def generate(
     if len(tokens) == 0:
         print("No tokens generated for this prompt")
         return None
-    prompt_tps = prompt.size / prompt_time
+    prompt_tps = encoded_prompt.size / prompt_time
     gen_tps = (len(tokens) - 1) / gen_time
     print(f"Prompt: {prompt_tps:.3f} tokens-per-sec")
     print(f"Generation: {gen_tps:.3f} tokens-per-sec")

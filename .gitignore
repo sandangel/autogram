@@ -1,8 +1,23 @@
-.venv
 .devenv
 .idea
 .DS_Store
 
+# Python
+.venv
 __pycache__
 .mypy_cache
-.pdm-python
+.ruff_cache
+dist
+
+.env
+
+*.log
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

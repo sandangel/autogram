@@ -1,18 +1,19 @@
 import sys
+
 from prompts import get_system_prompt
 
 try:
     import pyperclip
-    from mlx_lm import load, generate
+    from mlx_lm import generate, load
 except ImportError:
-    import site
     import os
+    import site
 
     # Automator environment does not have site-packages installed by pdm. We need to add it manually.
     site.addsitedir(os.getenv("PYTHONPATH") or "")
 
     import pyperclip
-    from mlx_lm import load, generate
+    from mlx_lm import generate, load
 
 model, tokenizer = load("Qwen/Qwen1.5-14B-Chat")
 

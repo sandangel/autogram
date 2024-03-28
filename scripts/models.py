@@ -2,15 +2,14 @@
 
 # Copied from ml-explore/mlx-examples/llms/mlx_lm/gguf/models.py
 
+import inspect
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
 
-import inspect
 import mlx.core as mx
-import mlx.nn as nn
 import utils
 from huggingface_hub import snapshot_download
+from mlx import nn
 
 
 @dataclass
@@ -21,11 +20,11 @@ class ModelArgs:
     num_attention_heads: int
     rms_norm_eps: float
     vocab_size: int
-    num_key_value_heads: Optional[int] = None
+    num_key_value_heads: int | None = None
     rope_theta: float = 10000
     rope_traditional: bool = False
-    model_type: Optional[str] = None
-    rope_scaling: Optional[Dict[str, Union[float, str]]] = None
+    model_type: str | None = None
+    rope_scaling: dict[str, float | str] | None = None
 
     def __post_init__(self):
         if self.num_key_value_heads is None:
@@ -90,8 +89,8 @@ class Attention(nn.Module):
     def __call__(
         self,
         x: mx.array,
-        mask: Optional[mx.array] = None,
-        cache: Optional[Tuple[mx.array, mx.array]] = None,
+        mask: mx.array | None = None,
+        cache: tuple[mx.array, mx.array] | None = None,
     ) -> mx.array:
         B, L, _ = x.shape
 
@@ -152,8 +151,8 @@ class TransformerBlock(nn.Module):
     def __call__(
         self,
         x: mx.array,
-        mask: Optional[mx.array] = None,
-        cache: Optional[Tuple[mx.array, mx.array]] = None,
+        mask: mx.array | None = None,
+        cache: tuple[mx.array, mx.array] | None = None,
     ) -> mx.array:
         r, cache = self.self_attn(self.input_layernorm(x), mask, cache)
         h = x + r
@@ -236,7 +235,7 @@ class GGUFTokenizer:
     def eos_token_id(self):
         return self._tokenizer.eos_id()
 
-    def decode(self, toks: List[int]) -> str:
+    def decode(self, toks: list[int]) -> str:
         return self._tokenizer.decode(toks)
 
     def apply_chat_template(self):
@@ -260,7 +259,7 @@ def translate_weight_names(name):
     return name
 
 
-def load(gguf_file: str, repo: Optional[str] = None) -> tuple[Model, GGUFTokenizer]:
+def load(gguf_file: str, repo: str | None = None) -> tuple[Model, GGUFTokenizer]:
     # If the gguf_file exists, try to load model from it.
     # Otherwise try to download and cache from the HF repo
     if not Path(gguf_file).exists():
@@ -280,7 +279,6 @@ def load(gguf_file: str, repo: Optional[str] = None) -> tuple[Model, GGUFTokeniz
     if gguf_ft == 0 or gguf_ft == 1:
         # ALL_F32 or MOSTLY_F16
         quantization = None
-        pass
     elif gguf_ft == 2 or gguf_ft == 3:
         # MOSTLY_Q4_0 or MOSTLY_Q4_1
         quantization = {"group_size": 32, "bits": 4}
